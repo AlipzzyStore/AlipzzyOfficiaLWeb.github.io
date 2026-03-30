@@ -1,0 +1,218 @@
+:root {
+    --primary: #00d2ff;
+    --secondary: #ffffff;
+    --bg-dark: #05070a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus+Jakarta+Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--secondary);
+    overflow-x: hidden;
+}
+
+.hidden { display: none !important; }
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+#loading-text {
+    position: absolute;
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--primary), #fff, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite ease-in-out;
+}
+
+@keyframes glow {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* Background Animation */
+.bg-animation {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 50%, #0a192f, #05070a);
+}
+
+.bg-animation::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    opacity: 0.05;
+    animation: move 20s linear infinite;
+}
+
+@keyframes move {
+    from { transform: translate(0,0); }
+    to { transform: translate(-50%, -50%); }
+}
+
+/* Nav */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    background: rgba(5, 7, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--primary), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-menu { display: flex; gap: 2rem; align-items: center; }
+.nav-links { display: flex; gap: 1.5rem; }
+
+.nav-links button, .nav-links a {
+    background: none;
+    border: none;
+    color: #8892b0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+.nav-links button:hover, .nav-links a:hover { color: var(--primary); }
+
+.nav-actions { display: flex; gap: 1rem; }
+.cart-btn, .settings-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--primary);
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+/* Main Content */
+main { padding: 8rem 5% 4rem; max-width: 1200px; margin: 0 auto; }
+
+.hero { text-align: center; margin-bottom: 4rem; }
+.hero h2 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+.hero p { color: #8892b0; }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 20px;
+    transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+}
+
+.card h3 { color: var(--primary); margin-bottom: 1.5rem; font-size: 1.2rem; }
+.price-tag { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; display: block; }
+.card ul { list-style: none; color: #8892b0; font-size: 0.9rem; margin-bottom: 2rem; flex-grow: 1; }
+.card li { margin-bottom: 0.5rem; }
+
+.card-btns { display: flex; gap: 1rem; }
+.card-btns button {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-cart { background: var(--border); color: white; }
+.btn-buy { background: var(--primary); color: #000; }
+
+/* Payment View */
+.payment-card {
+    background: var(--card-bg);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 30px;
+    border: 1px solid var(--primary);
+}
+
+.timer {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff4d4d;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 800;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .nav-links span { display: none; }
+    .hero h2 { font-size: 2rem; }
+    .logo { font-size: 1.2rem; }
+}
